@@ -52,6 +52,7 @@ export const syncDocInTree = (
   treeContext: TreeContextType<Doc> | null,
   docId: string,
   data: Partial<Doc>,
+  options?: { keepFocus?: boolean },
 ) => {
   if (!treeContext) {
     return;
@@ -60,36 +61,18 @@ export const syncDocInTree = (
   const { root } = treeContext;
   if (root && root.id === docId) {
     treeContext.setRoot({ ...root, ...data });
+  } else if (options?.keepFocus) {
+    // `updateNode` rebuilds the row and loses the focus inside it.
+    const node = treeContext.treeData.getNode(docId);
+    if (node) {
+      Object.assign(node, data);
+    }
   } else if (treeContext.treeData.getNode(docId)) {
     treeContext.treeData.updateNode(docId, data);
   }
 
-  treeContext.treeApiRef.current?.focus(docId);
-};
-
-/**
- * For a field the tree does not show. `updateNode` rebuilds the row and
- * drops the focus inside it. The options menu reads the value again when
- * it opens.
- */
-export const patchDocInTree = (
-  treeContext: TreeContextType<Doc> | null,
-  docId: string,
-  data: Partial<Doc>,
-) => {
-  if (!treeContext) {
-    return;
-  }
-
-  const { root } = treeContext;
-  if (root && root.id === docId) {
-    treeContext.setRoot({ ...root, ...data });
-    return;
-  }
-
-  const node = treeContext.treeData.getNode(docId);
-  if (node) {
-    Object.assign(node, data);
+  if (!options?.keepFocus) {
+    treeContext.treeApiRef.current?.focus(docId);
   }
 };
 

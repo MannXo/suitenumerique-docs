@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { APIError, errorCauses, fetchAPI } from '@/api';
-import { patchDocInTree, useTreeContextOrNull } from '@/docs/doc-tree/utils';
+import { syncDocInTree, useTreeContextOrNull } from '@/docs/doc-tree/utils';
 
 import { Doc } from '../types';
 
@@ -44,7 +44,12 @@ export function useCreateFavoriteDoc({
         });
       });
 
-      patchDocInTree(treeContext, id, { is_favorite: true });
+      syncDocInTree(
+        treeContext,
+        id,
+        { is_favorite: true },
+        { keepFocus: true },
+      );
 
       const message = t('Document starred successfully!');
       announce(message, 'polite');
