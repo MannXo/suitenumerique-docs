@@ -18,11 +18,6 @@ import { isDocNode, isWithinTreeItemActions } from '../utils';
 
 import { DocSubPageItem } from './DocSubPageItem';
 
-/**
- * Do not pass the current doc. Each reload is a new object, so the memo
- * would not hold, the tree would re-render and the focus in a row would
- * be lost.
- */
 interface DocTreeSubPagesProps {
   canMoveInto: boolean;
   isDeleted: boolean;
