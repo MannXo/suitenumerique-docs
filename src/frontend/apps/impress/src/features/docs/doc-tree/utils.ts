@@ -105,9 +105,9 @@ export const addDocToTree = (
 };
 
 /**
- * For a field the tree does not show. `updateNode` rebuilds the row and
- * drops the focus inside it. The options menu reads the value again when
- * it opens.
+ * Removes a doc from the tree once `navigation` resolves, deferred by the
+ * same delay used elsewhere (DocToolBox move/remove) so react-arborist isn't
+ * asked to delete a node that's still selected mid route transition.
  */
 export const deleteDocFromTreeAfterNavigate = (
   treeContext: TreeContextType<Doc | null> | null,
