@@ -3,6 +3,15 @@ entries:
   docs:
   - apiVersion: v2
     appVersion: latest
+    created: "2026-10-09T18:08:37.140596181Z"
+    digest: 32035b663c3af06177b0cb868d44702a928a29fb0269c013bbf77e7e1c249da7
+    name: docs
+    type: application
+    urls:
+    - https://MannXo.github.io/suitenumerique-docs/docs-6.0.0.tgz
+    version: 6.0.0
+  - apiVersion: v2
+    appVersion: latest
     created: "2026-09-22T13:55:51.145236998Z"
     digest: bc0e093da2b27ca51284393a8f3648270b74560e75818266922590d6755086ee
     name: docs
@@ -676,4 +685,4 @@ entries:
     urls:
     - https://suitenumerique.github.io/docs/docs-0.0.1.tgz
     version: 0.0.1
-generated: "2026-09-22T13:55:51.142730936Z"
+generated: "2026-10-09T18:08:37.138625559Z"
